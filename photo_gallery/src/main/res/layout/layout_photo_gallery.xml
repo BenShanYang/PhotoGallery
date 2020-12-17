@@ -33,12 +33,29 @@
         android:textColor="@android:color/white"
         android:textSize="15dp" />
 
-    <RadioGroup
+    <RelativeLayout
         android:id="@+id/indicator_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="26dp"
+        android:visibility="gone">
+
+        <RadioGroup
+            android:id="@+id/indicator_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/indicator_group"
+            android:layout_alignTop="@+id/indicator_group"
+            android:layout_alignRight="@+id/indicator_group"
+            android:layout_alignBottom="@+id/indicator_group"
+            android:clickable="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

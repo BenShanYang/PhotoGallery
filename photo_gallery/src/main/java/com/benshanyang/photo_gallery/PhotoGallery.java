@@ -1,12 +1,18 @@
 package com.benshanyang.photo_gallery;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +34,8 @@ import java.util.List;
 public class PhotoGallery<T> extends DialogFragment implements View.OnClickListener {
 
     private TextView tvNumberIndicator;
+    private RelativeLayout indicatorLayout;
+    private RadioGroup indicatorGroup;
 
     private int count = 0;
     private List<PhotoView> photoViewList = null;
@@ -58,6 +66,8 @@ public class PhotoGallery<T> extends DialogFragment implements View.OnClickListe
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvNumberIndicator = (TextView) view.findViewById(R.id.tv_number_indicator);
+        indicatorGroup = (RadioGroup) view.findViewById(R.id.indicator_group);
+        indicatorLayout = (RelativeLayout) view.findViewById(R.id.indicator_layout);
         view.findViewById(R.id.iv_close).setOnClickListener(this);
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         viewPager.setAdapter(new GalleryAdapter() {
@@ -73,6 +83,15 @@ public class PhotoGallery<T> extends DialogFragment implements View.OnClickListe
                         PhotoView photoView = new PhotoView(getContext());
                         photoGalleryable.bindData(urls.get(i), photoView);
                         photoViewList.add(photoView);
+
+                        RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(dp2px(8f), dp2px(8f));
+                        params.leftMargin = dp2px(3f);
+                        params.rightMargin = dp2px(3f);
+                        RadioButton radioButton = new RadioButton(getContext());
+                        radioButton.setButtonDrawable(new StateListDrawable());
+                        radioButton.setBackgroundResource(R.drawable.indicator_drawable);
+                        indicatorGroup.addView(radioButton, params);
+                        radioButton.setChecked(i == 0);
                     }
                 }
             }
@@ -127,6 +146,7 @@ public class PhotoGallery<T> extends DialogFragment implements View.OnClickListe
             @Override
             public void onPageSelected(int position) {
                 tvNumberIndicator.setText(String.format("%s/%s", position + 1, count));//顶部文字指示器
+                ((RadioButton) indicatorGroup.getChildAt(position)).setChecked(true);
             }
 
             @Override
@@ -154,6 +174,37 @@ public class PhotoGallery<T> extends DialogFragment implements View.OnClickListe
         if (v.getId() == R.id.iv_close) {
             dismiss();
         }
+    }
+
+    public PhotoGallery showTextIndicator() {
+        if (tvNumberIndicator != null) {
+            tvNumberIndicator.setVisibility(View.VISIBLE);
+        }
+        if (indicatorLayout != null) {
+            indicatorLayout.setVisibility(View.GONE);
+        }
+        return PhotoGallery.this;
+    }
+
+    public PhotoGallery showCircleIndicator() {
+        if (indicatorLayout != null) {
+            indicatorLayout.setVisibility(View.VISIBLE);
+        }
+        if (tvNumberIndicator != null) {
+            tvNumberIndicator.setVisibility(View.GONE);
+        }
+        return PhotoGallery.this;
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     *
+     * @param dpValue
+     * @return
+     */
+    private int dp2px(float dpValue) {
+        final float scale = getContext().getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 
 }
