@@ -1,6 +1,12 @@
 # PhotoGallery 简易图片浏览器-查看大图
 [![](https://jitpack.io/v/BenShanYang/PhotoGallery.svg)](https://jitpack.io/#BenShanYang/PhotoGallery)
 
+## 效果图与示例 apk
+
+![photo_gallery1](https://github.com/BenShanYang/PhotoGallery/blob/main/image_demo/1.jpg)
+![photo_gallery2](https://github.com/BenShanYang/PhotoGallery/blob/main/image_demo/2.jpg)
+
+
 ## 使用步骤
 
 #### Step 1.依赖PhotoGallery
@@ -59,8 +65,4 @@ protected void onCreate(Bundle savedInstanceState) {
 ```
 
 
-## 效果图与示例 apk
 
-
-![photo_gallery1](https://github.com/BenShanYang/PhotoGallery/blob/main/image_demo/1.jpg)
-![photo_gallery2](https://github.com/BenShanYang/PhotoGallery/blob/main/image_demo/2.jpg)
