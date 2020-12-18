@@ -57,3 +57,9 @@ protected void onCreate(Bundle savedInstanceState) {
 }
     
 ```
+
+## 效果图与示例 apk
+
+
+![photo_gallery1](https://github.com/BenShanYang/PhotoGallery/blob/main/image_demo/1.jpg)
+![photo_gallery2](https://github.com/BenShanYang/PhotoGallery/blob/main/image_demo/2.jpg)
