@@ -1,11 +1,13 @@
 package com.benshanyang.photogallery;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.benshanyang.photo_gallery.OnItemLongClickListener;
 import com.benshanyang.photo_gallery.PhotoGallery;
 import com.benshanyang.photo_gallery.PhotoGalleryable;
 import com.bumptech.glide.Glide;
@@ -33,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(MainActivity.this).load(data).into(imageView);
             }
         }).showIndicator(list.size() == 1 ? PhotoGallery.NONE : PhotoGallery.TEXT).setCurrentItem(1);
+
+        gallery.setOnItemLongClickListener(new OnItemLongClickListener<String>() {
+            @Override
+            public void onLongClick(View view, String bean, int position) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("您确认要保存该图片")
+                        .setPositiveButton("确定", null)
+                        .setNeutralButton("取消", null)
+                        .create()
+                        .show();
+            }
+        });
     }
 
     public void showDialog(View view) {

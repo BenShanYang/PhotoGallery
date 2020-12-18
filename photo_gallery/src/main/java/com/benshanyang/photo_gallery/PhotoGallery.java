@@ -50,6 +50,8 @@ public class PhotoGallery<T> extends DialogFragment {
     private int currentItemIndex = 0;//当前ViewPager初始显示的页的索引值
     private List<PhotoView> photoViewList = null;
     private PhotoGalleryable<T> photoGalleryAble;
+    private OnItemClickListener<T> onItemClickListener;//图片的点击事件
+    private OnItemLongClickListener<T> onItemLongClickListener;//图片的长点击事件
 
     public PhotoGallery(PhotoGalleryable<T> photoGalleryAble) {
         this.photoGalleryAble = photoGalleryAble;
@@ -94,13 +96,32 @@ public class PhotoGallery<T> extends DialogFragment {
             public void init() {
                 if (photoGalleryAble != null) {
                     photoViewList = new ArrayList<>();
-                    List<T> urls = photoGalleryAble.getUrls();
+                    final List<T> urls = photoGalleryAble.getUrls();
                     count = (urls != null ? urls.size() : 0);
                     tvNumberIndicator.setText(String.format("%s/%s", "1", count));//顶部文字指示器
                     for (int i = 0; i < count; i++) {
+                        final int finalI = i;
+                        final T bean = (urls != null) ? urls.get(i) : null;
                         PhotoView photoView = new PhotoView(getContext());
-                        photoGalleryAble.bindData(urls.get(i), photoView);
+                        photoGalleryAble.bindData(bean, photoView);
                         photoViewList.add(photoView);
+                        photoView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (onItemClickListener != null) {
+                                    onItemClickListener.onClick(v, bean, finalI);
+                                }
+                            }
+                        });
+                        photoView.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View v) {
+                                if (onItemLongClickListener != null) {
+                                    onItemLongClickListener.onLongClick(v, bean, finalI);
+                                }
+                                return false;
+                            }
+                        });
 
                         //底部圆点指示器
                         RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(dp2px(8f), dp2px(8f));
@@ -214,6 +235,28 @@ public class PhotoGallery<T> extends DialogFragment {
                 }
             });
         }
+        return PhotoGallery.this;
+    }
+
+    /**
+     * 图片的点击事件
+     *
+     * @param onItemClickListener 点击事件的回调函数
+     * @return 返回当前类的引用
+     */
+    public PhotoGallery<T> setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+        return PhotoGallery.this;
+    }
+
+    /**
+     * 图片的长点击事件
+     *
+     * @param onItemLongClickListener 长点击事件的回调函数
+     * @return 返回当前类的引用
+     */
+    public PhotoGallery<T> setOnItemLongClickListener(OnItemLongClickListener<T> onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
         return PhotoGallery.this;
     }
 
