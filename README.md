@@ -1,5 +1,7 @@
 # PhotoGallery 简易图片浏览器-查看大图
-[![](https://jitpack.io/v/BenShanYang/PhotoGallery.svg)](https://jitpack.io/#BenShanYang/PhotoGallery)
+
+版本 [![](https://jitpack.io/v/BenShanYang/PhotoGallery.svg)](https://jitpack.io/#BenShanYang/PhotoGallery)
+
 
 ## 效果图与示例 apk
 
