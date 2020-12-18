@@ -60,7 +60,9 @@ protected void onCreate(Bundle savedInstanceState) {
             Glide.with(MainActivity.this).load(data).into(imageView);
         }
     });
-    gallery.showIndicator(list.size() == 1 ? PhotoGallery.NONE : PhotoGallery.TEXT);//设置指示器的类型
+    //设置指示器的类型 
+    // 共有3种：PhotoGallery.NONE-不显示指示器、PhotoGallery.TEXT-指示器是文字类型的、PhotoGallery.CIRCLE-指示器是圆点类型的
+    gallery.showIndicator(list.size() == 1 ? PhotoGallery.NONE : PhotoGallery.TEXT);
     gallery.setCurrentItem(1);//设置初始显示第几张图片
     gallery.setOnItemLongClickListener(new OnItemLongClickListener<String>() {
         @Override
