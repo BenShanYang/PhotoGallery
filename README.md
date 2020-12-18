@@ -20,7 +20,7 @@ allprojects {
   }
 }
 dependencies {
-        implementation 'com.github.BenShanYang:PhotoGallery:1.0.0'
+    implementation 'com.github.BenShanYang:PhotoGallery:1.0.0'
 }
 ```
 或者引用本地lib
