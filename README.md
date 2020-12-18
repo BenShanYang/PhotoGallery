@@ -41,7 +41,7 @@ protected void onCreate(Bundle savedInstanceState) {
     "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=820556762,652942924&fm=26&gp=0.jpg", 
     "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=512426052,3777200390&fm=26&gp=0.jpg");
     
-    PhotoGallery gallery = new PhotoGallery<>(new PhotoGalleryable<String>() {
+    PhotoGallery<String> gallery = new PhotoGallery<>(new PhotoGalleryable<String>() {
         @Override
         public List<String> getUrls() {
             return list;//设置图片数据集合
