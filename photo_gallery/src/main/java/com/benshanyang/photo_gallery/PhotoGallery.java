@@ -105,6 +105,7 @@ public class PhotoGallery<T> extends DialogFragment {
                         PhotoView photoView = new PhotoView(getContext());
                         photoGalleryAble.bindData(bean, photoView);
                         photoViewList.add(photoView);
+                        //图片的点击事件
                         photoView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -113,6 +114,7 @@ public class PhotoGallery<T> extends DialogFragment {
                                 }
                             }
                         });
+                        //图片的长点击事件
                         photoView.setOnLongClickListener(new View.OnLongClickListener() {
                             @Override
                             public boolean onLongClick(View v) {
