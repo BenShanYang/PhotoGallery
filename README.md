@@ -59,7 +59,21 @@ protected void onCreate(Bundle savedInstanceState) {
             //将图片数据加载到图片控件
             Glide.with(MainActivity.this).load(data).into(imageView);
         }
-    }).showIndicator(list.size() == 1 ? PhotoGallery.NONE : PhotoGallery.CIRCLE).setCurrentItem(1);
+    });
+    gallery.showIndicator(list.size() == 1 ? PhotoGallery.NONE : PhotoGallery.TEXT);//设置指示器的类型
+    gallery.setCurrentItem(1);//设置初始显示第几张图片
+    gallery.setOnItemLongClickListener(new OnItemLongClickListener<String>() {
+        @Override
+        public void onLongClick(View view, String bean, int position) {
+            //图片的长点击事件
+        }
+    });
+    gallery.setOnItemClickListener(new OnItemClickListener<String>() {
+        @Override
+        public void onClick(View view, String bean, int position) {
+            //图片的点击事件
+        }
+    });
     gallery.show(getSupportFragmentManager(), "gallery");//显示图片查看大图
 }
     
