@@ -2,7 +2,7 @@
 
 版本号1.0.0 [![](https://jitpack.io/v/BenShanYang/PhotoGallery.svg)](https://jitpack.io/#BenShanYang/PhotoGallery)
 
-## 效果图与示例 apk
+## 效果图
 
 ![photo_gallery1](https://github.com/BenShanYang/PhotoGallery/blob/main/image_demo/1.jpg)
 ![photo_gallery2](https://github.com/BenShanYang/PhotoGallery/blob/main/image_demo/2.jpg)
